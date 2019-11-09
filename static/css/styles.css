@@ -1,0 +1,112 @@
+body {
+  background-image: -webkit-gradient(linear, left top, right top, from(#12c2e9), color-stop(#c471ed), color-stop(#f64f59), color-stop(#c471ed), to(#12c2e9));
+  background-image: linear-gradient(to right, #12c2e9, #c471ed, #f64f59, #c471ed, #12c2e9);
+  background-size: 200%;
+  background-position: left;
+  -webkit-transition: background-position 500ms ease-in-out;
+  transition: background-position 500ms ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Nunito sans", sans-serif;
+}
+
+body.moveBackgroundRight {
+  background-position: right;
+}
+
+#loginWrapper {
+  background: white;
+  -webkit-box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+  min-width: 25%;
+  padding: 0 5%;
+}
+
+#loginWrapper h1 {
+  text-align: center;
+  margin: 20% 0;
+  text-transform: uppercase;
+}
+
+.inputWrapper {
+  position: relative;
+  margin: 50px 0;
+  font-size: larger;
+}
+
+.inputWrapper input {
+  border: none;
+  border-bottom: 2px solid #888888;
+  -webkit-transition: border-bottom 200ms ease-in-out;
+  transition: border-bottom 200ms ease-in-out;
+  outline: none;
+  width: 100%;
+  font-size: large;
+}
+
+.inputWrapper span {
+  position: absolute;
+  top: -5%;
+  left: 0;
+  -webkit-transition: top 200ms ease-in-out;
+  transition: top 200ms ease-in-out;
+  pointer-events: none;
+  color: #888888;
+}
+
+.focussed + span {
+  top: -100%;
+}
+
+input.focussed {
+  border-bottom: 2px solid #c471ed;
+}
+
+#loginButton {
+  background-image: -webkit-gradient(linear, left top, right top, from(#12c2e9), color-stop(#c471ed), color-stop(#f64f59), color-stop(#c471ed), to(#12c2e9));
+  background-image: linear-gradient(to right, #12c2e9, #c471ed, #f64f59, #c471ed, #12c2e9);
+  background-size: 200%;
+  background-position: left;
+  -webkit-transition: background-position 500ms ease-in-out;
+  transition: background-position 500ms ease-in-out;
+  border: none;
+  -webkit-box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  width: 100%;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+#loginButton:hover {
+  background-position: right;
+}
+
+#loginWrapper p {
+  text-align: center;
+  margin: 10% 0;
+}
+
+#loginWrapper p a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #c471ed;
+  -webkit-transition: color 250ms ease-in-out;
+  transition: color 250ms ease-in-out;
+}
+
+#loginWrapper p a:hover {
+  color: #f64f59;
+}
+/*# sourceMappingURL=styles.css.map */
