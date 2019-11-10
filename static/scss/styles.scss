@@ -27,7 +27,7 @@ body {
 #loginWrapper h1 {
     text-align: center;
     margin: 20% 0;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .inputWrapper {
@@ -61,35 +61,53 @@ body {
 }
 
 input.focussed {
-    border-bottom: 2px solid #c471ed;
+    border-bottom: 2px solid #12c2e9;
+}
+
+.register input.focussed {
+    border-bottom: 2px solid #f64f59;
 }
 
 #loginButton {
-    background-image: linear-gradient(to right, #12c2e9, #c471ed, #f64f59, #c471ed, #12c2e9);
-    background-size: 200%;
-    background-position: left;
+    background-image: linear-gradient(to right, #12c2e9 25%, #c471ed, #f64f59, #f64f59, #c471ed, #12c2e9);
+    background-size: 500%;
+    background-position: 33%;
     transition: background-position 500ms ease-in-out;
     &:hover {
-        background-position: right;
+        transition: background-position 200ms ease-in-out;
+        background-position: left;
     }
 
     border: none;
-    box-shadow: 0 0 3em rgba(0,0,0,0.15);
     color: white;
 
     font-size: large;
     font-weight: bold;
+    text-transform: capitalize;
+
     width: 100%;
     padding: 20px 0;
+
     cursor: pointer;
 }
 
-#loginWrapper p {
+.register #loginButton {
+    background-position: right;
+    &:hover {
+        background-position: 65%;
+    }
+}
+
+#swapperWrapper {
     text-align: center;
     margin: 10% 0;
 }
 
-#loginWrapper p a {
+#swapperWrapper > * {
+    display: inline;
+}
+
+#formSwapper {
     font-weight: bold;
     text-decoration: none;
     color: #c471ed;
@@ -97,4 +115,8 @@ input.focussed {
     &:hover {
         color: #f64f59;
     }
+}
+
+#login.register #formSwapper:hover {
+    color: #12c2e9;
 }
