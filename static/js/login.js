@@ -38,6 +38,12 @@ $('#loginButton').click(e => {
         url: url,
         data: JSON.stringify(data),
         contentType: 'application/json',
-        dataType: 'json'
+        success: function() {
+            window.location.replace("/")
+        },
+        error: function() {
+            console.log("Login/Register error.");
+            // TODO proper handling.
+        }
     });
 });
