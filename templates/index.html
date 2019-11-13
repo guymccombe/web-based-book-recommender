@@ -15,7 +15,7 @@
     <div id="hero">
         <div id="triangle"></div>
         <div id="heroText">
-            <h1>Welcome {{ name }}</h1>
+            <h1>Welcome, {{ name }}</h1>
             <div id="logout">
                 <span>Not {{ name }}? <a href="/logout">Log out</a>.</span>
             </div>
@@ -28,8 +28,26 @@
             <h2>Recommended Reading</h2>
         </div>
         <div class="content">
-            <h2>Book Reviews</h2>
+            <h2>New Book Review</h2>
+            <form id="reviewForm">
+                <div class="inputWrapper">
+                    <input type="text" name="title">
+                    <span>Book Title</span>
+                </div>
+                <div class="inputWrapper">
+                    <input type="text" name="rating">
+                    <span>Rating</span>
+                </div>
+                <div class="inputWrapper">
+                    <input type="text" name="genre">
+                    <span>Genre (Optional)</span>
+                </div>
+                <button id="reviewSubmitButton" class="btn">Submit</button>
+            </form>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
 </body>
 </html>

@@ -75,10 +75,68 @@ body {
 .content {
     background: $white;
     box-shadow: 0 0 3em rgba(#000,0.15);
-    height: 50vh;
+    height: 100%;
     width: 25vw;
+    padding: 20px;
 }
 
 .content h2 {
     text-align: center;
+}
+
+.inputWrapper {
+    position: relative;
+    margin: 50px 0;
+    font-size: larger;
+}
+
+.inputWrapper input {
+    border: none;
+    border-bottom: 2px solid $grey;
+    transition: border-bottom 200ms ease-in-out;
+    outline: none;
+
+    width: 100%;
+    font-size: large;
+}
+
+.inputWrapper span {
+    position: absolute;
+    top: -5%;
+    left: 0;
+    transition: top 200ms ease-in-out;
+
+    pointer-events: none;
+    color: $grey;
+}
+
+.focussed + span {
+    top: -100%;
+}
+
+input.focussed {
+    border-bottom: 2px solid $red;
+}
+
+.btn {
+    background-image: linear-gradient(to right, $blue, $pink, $red 50%);
+    background-size: 200%;
+    background-position: left;
+    transition: background-position 500ms ease-in-out;
+    &:hover {
+        transition: background-position 200ms ease-in-out;
+        background-position: right;
+    }
+
+    border: none;
+    color: $white;
+
+    font-size: large;
+    font-weight: bold;
+    text-transform: capitalize;
+
+    width: 100%;
+    padding: 20px 0;
+
+    cursor: pointer;
 }
