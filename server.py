@@ -1,5 +1,7 @@
 from flask import Flask, Response, render_template, request, abort, redirect, url_for, session
 from os import path
+from numpy import mean, diag, dot
+from scipy.sparse.linalg import svds
 import pandas as pd
 
 app = Flask(__name__)
@@ -13,6 +15,15 @@ def home():
         username = session["username"]
         return render_template("index.html", name=username)
     return redirect(url_for("login"))
+
+
+@app.route("/recommend", methods=["GET"])
+def getRecommendations():
+    if "username" in session:
+        sortedPredicitons = predicitionsDF.iloc[int(session["username"])].sort_values(
+            ascending=False)  # TODO permanent solution instead of casting username to int
+    else:
+        abort(403)
 
 
 @app.route("/login")
@@ -50,10 +61,36 @@ def logout():
     return redirect(url_for("login"))
 
 
+def generatePredictionsDFBySingularValueDecomposition(dataframe):
+    matrix = dataframe.values
+    user_ratings_mean = mean(matrix, axis=1).reshape(-1, 1)
+    demeanedMatrix = matrix - user_ratings_mean
+    del matrix
+
+    userFeaturesMatrix, weights, bookFeaturesMatrix = svds(
+        demeanedMatrix, k=50)
+    del demeanedMatrix
+    weights = diag(weights)
+
+    userPredictionRatings = dot(
+        dot(userFeaturesMatrix, weights), bookFeaturesMatrix) + user_ratings_mean
+    predicitions = pd.DataFrame(
+        userPredictionRatings, columns=dataframe.columns)
+
+    return predicitions
+
+
 if __name__ == "__main__":
     rootPath = path.dirname(__file__)
-    ratings = pd.read_csv(path.join(rootPath, "data/ratings.csv"))
+    # TODO remove this nrows, caps number of ratings read to save memory
+    ratings = pd.read_csv(path.join(rootPath, "data/ratings.csv"), nrows=10000)
     books = pd.read_csv(path.join(rootPath, "data/books.csv"))
     ratings_books = pd.merge(ratings, books, on="book_id")
+
+    ratings_books = ratings_books.pivot_table(
+        index="user_id", columns="title", values="rating").fillna(0)
+
+    predicitionsDF = generatePredictionsDFBySingularValueDecomposition(
+        ratings_books)
 
     app.run(port=8080, debug=True)
