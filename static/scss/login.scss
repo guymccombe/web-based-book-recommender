@@ -1,171 +1,177 @@
 @import "__colours.scss";
 
 body {
-    background-image: linear-gradient(to right, $blue, $pink, $red, $pink, $blue);
-    background-size: 200%;
-    background-position: left;
-    transition: background-position 500ms ease-in-out;
+  background-image: linear-gradient(to right, $blue, $pink, $red, $pink, $blue);
+  background-size: 200%;
+  background-position: left;
+  transition: background-position 500ms ease-in-out;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  min-height: 100vh;
 
-    font-family: "Nunito sans", sans-serif;
+  font-family: "Nunito sans", sans-serif;
 
-    &.moveBackgroundRight {
-        background-position: right;
-    }
+  &.moveBackgroundRight {
+    background-position: right;
+  }
 }
 
 #loginWrapper {
-    background: $white;
-    box-shadow: 0 0 3em rgba(#000,0.15);
-    min-width: 25%;
-    padding: 0 5%;
+  background: $white;
+  box-shadow: 0 0 3em rgba(#000, 0.15);
+  min-width: 25%;
+  padding: 0 5%;
 }
 
 #loginWrapper.shake {
-    animation-name: shake;
-    animation-duration: 500ms;
-    animation-iteration-count: 1;
+  animation-name: shake;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
 }
 
 @keyframes shake {
-    from,
-    to {
-      transform: translate(0, 0);
-    }
-  
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-      transform: translate(-10px, 0);
-    }
-  
-    20%,
-    40%,
-    60%,
-    80% {
-      transform: translate(10px, 0);
-    }
+  from,
+  to {
+    transform: translate(0, 0);
   }
-  
 
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate(-10px, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(10px, 0);
+  }
+}
 
 #loginWrapper h1 {
-    text-align: center;
-    margin: 20% 0;
-    text-transform: capitalize;
+  text-align: center;
+  margin: 20% 0;
+  text-transform: capitalize;
 }
 
 .inputWrapper {
-    position: relative;
-    margin-top: 50px;
-    font-size: larger;
+  position: relative;
+  margin-top: 50px;
+  font-size: larger;
 }
 
 .inputWrapper input {
-    border: none;
-    border-bottom: 2px solid $grey;
-    transition: border-bottom 200ms ease-in-out;
-    outline: none;
+  border: none;
+  border-bottom: 2px solid $grey;
+  transition: border-bottom 200ms ease-in-out;
+  outline: none;
 
-    width: 100%;
-    font-size: large;
+  width: 100%;
+  font-size: large;
 }
 
 .inputWrapper span {
-    position: absolute;
-    top: -5%;
-    left: 0;
-    transition: top 200ms ease-in-out;
+  position: absolute;
+  top: -5%;
+  left: 0;
+  transition: top 200ms ease-in-out;
 
-    pointer-events: none;
-    color: $grey;
+  pointer-events: none;
+  color: $grey;
 }
 
 .focussed + span {
-    top: -100%;
+  top: -100%;
 }
 
 input.focussed {
-    border-bottom: 2px solid $blue;
+  border-bottom: 2px solid $blue;
 }
 
 .register input.focussed {
-    border-bottom: 2px solid $red;
+  border-bottom: 2px solid $red;
 }
 
 #errorWrapper {
-    height: 0;
-    margin-bottom: 50px;
-    transition: height 500ms ease-in-out, margin-bottom 500ms ease-in-out;
-    margin-top: 6px;
+  height: 0;
+  margin-bottom: 50px;
+  transition: height 500ms ease-in-out, margin-bottom 500ms ease-in-out;
+  margin-top: 6px;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    color: $red;
-    font-weight: bold;
+  color: $red;
+  font-weight: bold;
 }
 
 #errorWrapper.show {
-    height: 27px;
-    margin-bottom: 23px;
+  height: 27px;
+  margin-bottom: 23px;
 }
 
 #loginButton {
-    background-image: linear-gradient(to right, $blue 25%, $pink, $red, $red, $pink, $blue);
-    background-size: 500%;
-    background-position: 33%;
-    transition: background-position 500ms ease-in-out;
-    &:hover {
-        transition: background-position 200ms ease-in-out;
-        background-position: left;
-    }
+  background-image: linear-gradient(
+    to right,
+    $blue 25%,
+    $pink,
+    $red,
+    $red,
+    $pink,
+    $blue
+  );
+  background-size: 500%;
+  background-position: 33%;
+  transition: background-position 500ms ease-in-out;
+  &:hover {
+    transition: background-position 200ms ease-in-out;
+    background-position: left;
+  }
 
-    border: none;
-    color: $white;
+  border: none;
+  color: $white;
 
-    font-size: large;
-    font-weight: bold;
-    text-transform: capitalize;
+  font-size: large;
+  font-weight: bold;
+  text-transform: capitalize;
 
-    width: 100%;
-    padding: 20px 0;
+  width: 100%;
+  padding: 20px 0;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .register #loginButton {
-    background-position: right;
-    &:hover {
-        background-position: 65%;
-    }
+  background-position: right;
+  &:hover {
+    background-position: 65%;
+  }
 }
 
 #swapperWrapper {
-    text-align: center;
-    margin: 10% 0;
+  text-align: center;
+  margin: 10% 0;
 }
 
 #swapperWrapper > * {
-    display: inline;
+  display: inline;
 }
 
 #formSwapper {
-    font-weight: bold;
-    text-decoration: none;
-    color: $pink;
-    transition: color 250ms ease-in-out;
-    &:hover {
-        color: $red;
-    }
+  font-weight: bold;
+  text-decoration: none;
+  color: $pink;
+  transition: color 250ms ease-in-out;
+  &:hover {
+    color: $red;
+  }
 }
 
 #login.register #formSwapper:hover {
-    color: $blue;
+  color: $blue;
 }

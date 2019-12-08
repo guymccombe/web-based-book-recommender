@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Log in | BookClub</title>
-    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename= 'img/favicon.png') }}" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{{ url_for('static', filename= 'img/favicon.png') }}"
+    />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/login.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
-</head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/login.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <div id="loginWrapper">
-        <h1 id="formTitle">Log in</h1>
-        <form id="login">
-            <div class="inputWrapper">
-                <input type="text" name="username">
-                <span>Username</span>
-            </div>
-            <div id="errorWrapper">
-                <span>Error go here.</span>
-            </div>
-            <button id="loginButton">Log in</button>
-            <div id="swapperWrapper">
-                <p id="registerPrompt">New to us? </p>
-                <a id="formSwapper" href="">Join now!</a>
-            </div>
-        </form>
+      <h1 id="formTitle">Log in</h1>
+      <form id="login">
+        <div class="inputWrapper">
+          <input type="text" name="username" />
+          <span>Username</span>
+        </div>
+        <div id="errorWrapper">
+          <span>Error go here.</span>
+        </div>
+        <button id="loginButton">Log in</button>
+        <div id="swapperWrapper">
+          <p id="registerPrompt">New to us?</p>
+          <a id="formSwapper" href="">Join now!</a>
+        </div>
+      </form>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename = 'js/login.js') }}"></script>
-</body>
-
+  </body>
 </html>

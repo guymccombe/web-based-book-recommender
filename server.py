@@ -18,15 +18,52 @@ def home():
 
 
 @app.route("/recommend", methods=["GET"])
-def getRecommendations():
+def recommend():
     if "username" in session:
-        sortedPredicitons = predicitionsDF.iloc[int(session["username"])].sort_values(
-            ascending=False)  # TODO permanent solution instead of casting username to int
+        print("Entered get")
+        rec = getRecommendations(session["username"])
+        print("Exited get")
+        return rec
     else:
         abort(403)
 
 
-@app.route("/login")
+def getRecommendations(username, numberOfRecommendations=5):
+    if "recommendations" in session:
+        print("session found")
+        recommendations = session["recommendations"]
+    else:
+        userID = userNameToID(username)
+        sortPred = predicitionsDF.iloc[userID].sort_values(ascending=False)
+
+        userData = ratings[ratings.user_id == userID]
+        userFull = userData.merge(books, how="left", left_on="book_id",
+                                right_on="book_id").sort_values(['rating'], ascending=False)
+
+        print(f"User {userID} has already rated {userFull.shape[0]} books.")
+        print(f"Recommending the highest {numberOfRecommendations} ratings.")
+
+        recommendations = (
+            books[~books["book_id"].isin(userFull["book_id"])].
+            merge(pd.DataFrame(sortPred).reset_index(),
+                how="left", left_on="title",
+                right_on="title").
+            rename(columns={userID: "Predictions"}).
+            sort_values("Predictions", ascending=False)
+        )
+        session["recommendations"] = recommendations
+
+    recommendations = recommendations.iloc[:numberOfRecommendations, :-1]
+    xs = recommendations.to_json()
+    return xs
+
+
+def userNameToID(username):
+    # TODO permanent solution instead of casting username to int
+    return int(username)
+
+
+@app.route("/login", methods=["GET"])
 def login():
     return render_template("login.html")
 
@@ -82,8 +119,8 @@ def generatePredictionsDFBySingularValueDecomposition(dataframe):
 
 if __name__ == "__main__":
     rootPath = path.dirname(__file__)
-    # TODO remove this nrows, caps number of ratings read to save memory
-    ratings = pd.read_csv(path.join(rootPath, "data/ratings.csv"), nrows=10000)
+    ratings = pd.read_csv(  # nrows to reduce memory usage during development
+        path.join(rootPath, "data/ratings.csv"), nrows=100000)
     books = pd.read_csv(path.join(rootPath, "data/books.csv"))
     ratings_books = pd.merge(ratings, books, on="book_id")
 

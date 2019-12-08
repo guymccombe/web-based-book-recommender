@@ -1,53 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>BookClub</title>
-    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename= 'img/favicon.png') }}"/>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{{ url_for('static', filename= 'img/favicon.png') }}"
+    />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
-</head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/index.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <div id="hero">
-        <div id="triangle"></div>
-        <div id="heroText">
-            <h1>Welcome, {{ name }}</h1>
-            <div id="logout">
-                <span>Not {{ name }}? <a href="/logout">Log out</a>.</span>
-            </div>
+      <div id="triangle"></div>
+      <div id="heroText">
+        <h1>Welcome, {{ name }}</h1>
+        <div id="logout">
+          <span>Not {{ name }}? <a href="/logout">Log out</a>.</span>
         </div>
-        <img src="{{ url_for('static', filename = 'img/book.png') }}" alt="">
+      </div>
+      <img src="{{ url_for('static', filename = 'img/book.png') }}" alt="" />
     </div>
-    
+
     <div id="contentWrapper">
-        <div class="content">
-            <h2>Recommended Reading</h2>
+      <div class="content">
+        <h2>Recommended Reading</h2>
+        <div id="tableWrapper">
+          <table id="recommended">
+            <p>
+              You must rate a book before we can show you any recommendations!
+            </p>
+          </table>
         </div>
-        <div class="content">
-            <h2>New Book Review</h2>
-            <form id="reviewForm">
-                <div class="inputWrapper">
-                    <input type="text" name="title">
-                    <span>Book Title</span>
-                </div>
-                <div class="inputWrapper">
-                    <input type="text" name="rating">
-                    <span>Rating</span>
-                </div>
-                <div class="inputWrapper">
-                    <input type="text" name="genre">
-                    <span>Genre (Optional)</span>
-                </div>
-                <button id="reviewSubmitButton" class="btn">Submit</button>
-            </form>
-        </div>
+
+        <button id="refreshRecommendations" class="btn">
+          Refresh Recommendations
+        </button>
+      </div>
+      <div class="content">
+        <h2>New Book Review</h2>
+        <form id="reviewForm">
+          <div class="inputWrapper">
+            <input type="text" name="title" />
+            <span>Book Title</span>
+          </div>
+          <div class="inputWrapper">
+            <input type="text" name="rating" />
+            <span>Rating</span>
+          </div>
+          <div class="inputWrapper">
+            <input type="text" name="genre" />
+            <span>Genre (Optional)</span>
+          </div>
+          <button id="reviewSubmitButton" class="btn">Submit</button>
+        </form>
+      </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
-</body>
+  </body>
 </html>
