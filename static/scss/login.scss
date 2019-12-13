@@ -22,8 +22,9 @@ body {
 #loginWrapper {
   background: $white;
   box-shadow: 0 0 3em rgba(#000, 0.15);
-  min-width: 25%;
-  padding: 0 5%;
+  width: 33vw;
+  min-width: 400px;
+  padding: 0 40px;
 }
 
 #loginWrapper.shake {
